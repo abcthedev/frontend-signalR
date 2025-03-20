@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as signalR from "@microsoft/signalr";
 
 const NotificationComponent = () => {
@@ -10,9 +10,9 @@ const NotificationComponent = () => {
 
     useEffect(() => {
         if (connection) return;
-        
+
         const newConnection = new signalR.HubConnectionBuilder()
-            .withUrl("http://localhost:5101/notificationHub")
+            .withUrl("https://be-mongo-notif-hdbhh8bkdja0gcgn.canadacentral-01.azurewebsites.net/notificationHub")
             .withAutomaticReconnect()
             .build();
 
@@ -46,7 +46,7 @@ const NotificationComponent = () => {
         }
 
         try {
-            const response = await fetch("http://localhost:5101/api/notifications", {
+            const response = await fetch("https://be-mongo-notif-hdbhh8bkdja0gcgn.canadacentral-01.azurewebsites.net/api/notifications", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ userId, message }),
@@ -66,7 +66,7 @@ const NotificationComponent = () => {
 
     const fetchNotifications = async () => {
         try {
-            const response = await fetch("http://localhost:5101/api/notifications");
+            const response = await fetch("https://be-mongo-notif-hdbhh8bkdja0gcgn.canadacentral-01.azurewebsites.net/api/notifications");
             const data = await response.json();
             setNotifications(data.map((n: { userId: string, message: string }) => `User ${n.userId}: ${n.message}`));
         } catch (error) {
