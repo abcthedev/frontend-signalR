@@ -79,6 +79,9 @@ const NotificationComponent = () => {
             <h2>Notifications</h2>
             <h4>SignalR Status: {connectionStatus}</h4>
             <div>
+                <button onClick={fetchNotifications} style={{ marginLeft: "0.5rem", background: "blue", color: "#fff" }}>GEt ALL</button>
+            </div>
+            <div>
                 <span>User ID</span>
                 <input
                     type="text"
@@ -100,7 +103,6 @@ const NotificationComponent = () => {
             </div>
             <div>
                 <button onClick={sendNotification} style={{ marginLeft: "0.5rem", background: "green", color: "#fff" }}>Send Notification</button>
-                <button onClick={fetchNotifications} style={{ marginLeft: "0.5rem", background: "blue", color: "#fff" }}>Refresh</button>
             </div>
             <ul>
                 {notifications.map((notification, index) => (
